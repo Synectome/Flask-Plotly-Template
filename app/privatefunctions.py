@@ -30,6 +30,7 @@ def move_upload_to_secure_directory(username, filename, project=False):
 
     if project:
         # project is a projectname,
+        cwd = os.path.join(cwd, 'app')
         cwd = os.path.join(cwd, 'projectfiles')
         destination = os.path.join(cwd, project)
         if not os.path.exists(destination):

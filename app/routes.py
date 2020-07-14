@@ -89,10 +89,10 @@ def upload():
         if secure_filename(filedata.filename):
             saved = datafiles.save(filedata)
             time.sleep(3)
-            move_upload(current_user.username, filedata.filename, False)
-            return 'successful upload'
+            move_upload(current_user.username, filedata.filename, 'testProject')
+            return redirect(url_for('upload')), flash('upload successful')
         else:
-            return 'insecure filename, please rename file before uploading.'
+            return redirect(url_for('upload')), flash('insecure filename, please rename file before uploading.')
     return render_template('upload.html', form=form)
 
 ##################################################################
