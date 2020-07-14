@@ -65,6 +65,26 @@ json objects can be stored in the database as pickles.
         -maybe not, seems unideal due to pickle objects not always
         being a 1:1 with json encoding..
 
+# 6 -----------------------------
+    Setting up flask_uploads.py
+    In venv/lib/python3.8/site-packages/flask_uploads.py
+    Change
+        from werkzeug import secure_filename,FileStorage
+    to
+        from werkzeug.utils import secure_filename
+        from werkzeug.datastructures import  FileStorage
+
+# 7 -----------------------------
+    THREADING FUNCTIONS
+        -useful to make one function wait for another, or to have
+        functions run asynchronously, so no waiting is nescesary
+
+            t = Thread(target=datafiles.save, args=filedata)
+            t.start()
+            while t.is_alive():
+                pass
+
+            move_upload(current_user.username, filedata.filename, False)
 # infinity ----------------------
 References:
     1)  https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world

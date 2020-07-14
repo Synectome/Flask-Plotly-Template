@@ -3,6 +3,9 @@ Stores backend functions to use in other modules without confusing
 what those spaces are inteded for
 '''
 import os
+import time
+import shutil
+from app import app
 
 
 def user_directory_init(username):
@@ -15,3 +18,38 @@ def user_directory_init(username):
     os.mkdir(cwd)
     return cwd
 
+
+def move_upload_to_secure_directory(username, filename, project=False):
+    '''Moves uploaded file from temp_uploads directory to either
+    the users personal folder, or to a project directory.'''
+
+    cwd = app.config['UPLOADS_DEFAULT_DEST']
+    cwd = os.path.join(cwd, 'datafiles')
+    filepath = os.path.join(cwd, filename)
+    cwd = os.getcwd()
+
+    if project:
+        # project is a projectname,
+        cwd = os.path.join(cwd, 'projectfiles')
+        destination = os.path.join(cwd, project)
+        if not os.path.exists(destination):
+            os.mkdir(destination)
+        destination = os.path.join(destination, filename)
+    else:
+        # upload to the users personal directory
+        cwd = os.path.join(cwd, 'app')
+        cwd = os.path.join(cwd, 'userfiles')
+        destination = os.path.join(cwd, username)
+        destination = os.path.join(destination, filename)
+        print('filepath is :')
+        print(str(filepath))
+        print('destination is :')
+        print(str(destination))
+    try:
+        shutil.move(filepath, destination)
+    except:
+        print('shutil had error')
+        return 'shutil.move had an error'
+
+    # shutil.move worked, now delete the old file
+    # os.remove(filepath)

@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+   <body>
+   <form method="POST" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+      {{ form.csrf_token }}
+      <p>{{ form.file.label }}</p>
+      <p>{{ form.file(size=32) }}</p>
+      {% for error in form.file.errors %}
+      <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+      <p>{{ form.submit() }}</p>
+   </form>
+   </body>
+{% endblock %}

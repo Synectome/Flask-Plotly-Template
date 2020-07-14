@@ -1,10 +1,15 @@
-from app import app, db
+import os
+import time
+from app import app, db, datafiles
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, UploadForm
 from app.models import User
-from app.privatefunctions import user_directory_init
+from app.privatefunctions import user_directory_init, move_upload_to_secure_directory as move_upload
+from flask_uploads import configure_uploads
+from werkzeug.utils import secure_filename
 from werkzeug.urls import url_parse
+from threading import Thread
 
 
 @app.route('/')
@@ -61,6 +66,38 @@ def register():
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     return render_template('user.html', user=user)
+
+##################################################################
+# -----------------FILE UPLOAD SECTION-------------------------- #
+##################################################################
+
+
+configure_uploads(app, datafiles)
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
+
+
+@app.route('/upload', methods=['GET', 'POST'])
+@login_required
+def upload():
+    form = UploadForm()
+    if form.validate_on_submit():
+        filedata = form.file.data
+        if secure_filename(filedata.filename):
+            saved = datafiles.save(filedata)
+            time.sleep(3)
+            move_upload(current_user.username, filedata.filename, False)
+            return 'successful upload'
+        else:
+            return 'insecure filename, please rename file before uploading.'
+    return render_template('upload.html', form=form)
+
+##################################################################
+# -------------------PLOTTING and DATA-------------------------- #
+##################################################################
 
 
 @app.route('/vis')
