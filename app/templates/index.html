@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Hi, {{ current_user.username }}!</h1>
+    <h3> This is the Index Page of the site </h3>
+    <!-- for projects in the user-project many-many table that the logged in
+    user is a member of, display relevant project data and tools here-->
+{% endblock %}

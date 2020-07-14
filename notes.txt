@@ -1,0 +1,76 @@
+#################################
+#################################
+########### July 12 2020 ########
+#################################
+
+        Project Structure
+
+Flask_template_site/
+
+# 1 -----------------------------
+COMMAND to launch the site:
+    $ flask run
+COMMAND to stop the site:
+    $ ctrl+c
+test deployment url:
+    http://localhost:5000/
+
+# 2 -----------------------------
+environmental variables are set using this format:
+'export FLASK_APP=template_site.py', where export would be
+'set' on a windows machine. Stored in .flaskenv file to save between
+terminal sessions.
+--Dependant on the python-dotenv package
+
+# 3 -----------------------------
+Making the database (using flask-SQLalchemy):
+"Flask-SQLAlchemy uses a "snake case" naming convention
+for database tables by default."
+    -only do this when making the database 1st time:
+    $ flask db init
+
+    -when a new table or other change is made to the db:
+    $ flask db migrate -m "my message about the change"
+
+    -when those changes are ready to be added:
+    $ flask db upgrade
+
+    -if a mistake is commited to the db:
+    $ flask db downgrade
+
+# 4 -----------------------------
+Using the Database from python terminal/.py
+    >>> from app import db
+    >>> from app.models import User, GenericProjectTable
+
+    # adding new entries to a table
+    >>> newuser = User(username='johndoe', email='john@doe.doe')
+    >>> db.session.add(newuser)
+    >>> db.session.commit()
+
+    # query a given table
+    >>> users = User.query.all()
+    >>> users
+    [<User john>] # a list of all the users, can be iterated through
+
+    # query via id
+    >>> User.query.get(1)
+    <User john>
+# 5 -----------------------------
+PICKLE OBJECT in SQLalchemy
+~is a serialized python object, like json, only binary instead of
+a human readable string. I will make a pickle<->json converter so that
+json objects can be stored in the database as pickles.
+
+        -maybe not, seems unideal due to pickle objects not always
+        being a 1:1 with json encoding..
+
+# infinity ----------------------
+References:
+    1)  https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
+    2)  https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/#querying-records
+    3)  https://gist.github.com/davfre/8313299
+    4)  https://towardsdatascience.com/how-to-create-a-plotly-visualization-and-embed-it-on-websites-517c1a78568b
+    5)  https://plotly.com/python-api-reference/generated/plotly.io.html
+    6)      a) SAVING PLOTLY PLOTS TO HTML IN R: https://plotly-r.com/saving.html
+            b) TO EMBED THAT INTO ANOTHER DOC: https://www.w3schools.com/tags/tag_iframe.asp#:~:text=The%20tag%20specifies%20an,within%20the%20current%20HTML%20document.&text=This%20is%20used%20by%20screen,of%20the%20is.
