@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileField
-from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, Regexp, Length
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileField, RadioField
+from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, Regexp, Length, Optional
 from app.models import User
 from re import compile
 
@@ -38,5 +38,9 @@ class RegistrationForm(FlaskForm):
 
 
 class UploadForm(FlaskForm):
-    file = FileField("Select File")
-    submit = SubmitField('Submit File')
+    file = FileField("Select File", validators=[DataRequired()])
+    project_or_user = RadioField(label='Choose where to save file.',
+                                 choices=[('0', 'Personal User Space'),
+                                          ('1', 'Specific Project')])
+    project_name = StringField('Project Name', validators=[Optional()])
+    submit = SubmitField('Upload File')

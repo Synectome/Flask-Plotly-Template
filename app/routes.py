@@ -86,13 +86,22 @@ def upload():
     form = UploadForm()
     if form.validate_on_submit():
         filedata = form.file.data
+        print('here comes the project_name')
+        print(form.project_name.data)
+        print('here comes the radio selection')
+        print(form.project_or_user.data)
+        if form.project_or_user == '1' and form.project_name == '':
+            return redirect(url_for('upload')), flash('Project destination selected, but no project name given.')
         if secure_filename(filedata.filename):
             saved = datafiles.save(filedata)
             time.sleep(3)
-            move_upload(current_user.username, filedata.filename, 'testProject')
-            return redirect(url_for('upload')), flash('upload successful')
+            move_upload(current_user.username, filedata.filename, form.project_or_user.data,
+                        project=form.project_name.data)
+            return redirect(url_for('index')), flash('upload successful')
         else:
             return redirect(url_for('upload')), flash('insecure filename, please rename file before uploading.')
+    #flash('shit is not validated on submit!')
+    print(form.errors)
     return render_template('upload.html', form=form)
 
 ##################################################################

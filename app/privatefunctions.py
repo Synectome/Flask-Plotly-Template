@@ -1,6 +1,6 @@
 '''
 Stores backend functions to use in other modules without confusing
-what those spaces are inteded for
+what those spaces are intended for
 '''
 import os
 import time
@@ -19,7 +19,7 @@ def user_directory_init(username):
     return cwd
 
 
-def move_upload_to_secure_directory(username, filename, project=False):
+def move_upload_to_secure_directory(username, filename, user_or_proj, project=None):
     '''Moves uploaded file from temp_uploads directory to either
     the users personal folder, or to a project directory.'''
 
@@ -28,7 +28,7 @@ def move_upload_to_secure_directory(username, filename, project=False):
     filepath = os.path.join(cwd, filename)
     cwd = os.getcwd()
 
-    if project:
+    if user_or_proj == '1':
         # project is a projectname,
         cwd = os.path.join(cwd, 'app')
         cwd = os.path.join(cwd, 'projectfiles')
@@ -36,7 +36,7 @@ def move_upload_to_secure_directory(username, filename, project=False):
         if not os.path.exists(destination):
             os.mkdir(destination)
         destination = os.path.join(destination, filename)
-    else:
+    elif user_or_proj == '0':
         # upload to the users personal directory
         cwd = os.path.join(cwd, 'app')
         cwd = os.path.join(cwd, 'userfiles')
@@ -46,6 +46,8 @@ def move_upload_to_secure_directory(username, filename, project=False):
         print(str(filepath))
         print('destination is :')
         print(str(destination))
+    else:
+        return 'fat error with radio button tech'
     try:
         shutil.move(filepath, destination)
     except:

@@ -2,15 +2,24 @@
 
 {% block content %}
    <body>
-   <form method="POST" enctype="multipart/form-data">
-      {{ form.hidden_tag() }}
-      {{ form.csrf_token }}
-      <p>{{ form.file.label }}</p>
-      <p>{{ form.file(size=32) }}</p>
-      {% for error in form.file.errors %}
-      <span style="color: red;">[{{ error }}]</span>
-      {% endfor %}
-      <p>{{ form.submit() }}</p>
-   </form>
+      <form method="POST" enctype="multipart/form-data">
+         {{ form.hidden_tag() }}
+         {{ form.csrf_token }}
+         <p>{{ form.file.label }}</p>
+         <p>{{ form.file(size=32) }}</p>
+         {% for error in form.file.errors %}
+         <span style="color: red;">[{{ error }}]</span>
+         {% endfor %}
+         <p>{{ form.project_or_user.label }}</p>
+         {% for subfield in form.project_or_user %}
+            <tr>
+               <td>{{ subfield }}</td>
+               <td>{{ subfield.label }}</td>
+            </tr>
+         {% endfor %}
+         <p>{{ form.project_name.label }}
+            {{ form.project_name }}</p>
+         <p>{{ form.submit() }}</p>
+      </form>
    </body>
 {% endblock %}
