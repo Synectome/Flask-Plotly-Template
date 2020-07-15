@@ -15,4 +15,5 @@ login.login_view = 'login'
 
 datafiles = UploadSet('datafiles', DATA)
 
-from app import routes, models, privatefunctions
+# This import causes errors if it is at the top of the file
+from app import routes, models, errors, privatefunctions
