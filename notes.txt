@@ -85,6 +85,22 @@ json objects can be stored in the database as pickles.
                 pass
 
             move_upload(current_user.username, filedata.filename, False)
+# 8 -----------------------------
+    Email server configuration for a gmail account:
+        $ export MAIL_SERVER=smtp.googlemail.com
+        $ export MAIL_PORT=587
+        $ export MAIL_USE_TLS=1
+        $ export MAIL_USERNAME=<your-gmail-username>
+        $ export MAIL_PASSWORD=<your-gmail-password>
+    Then you need to allow 'less secure' apps on the google account:
+        https://support.google.com/accounts/answer/6010255?hl=en
+
+    ADMINS = ['your-email@example.com']
+
+        if the email server is not set in the environment, then the emailing of errors needs to be disabled
+
+    to use the SMTP 'fake' email server for debugging, just run this in another terminal:
+        $ python -m smtpd -n -c DebuggingServer localhost:8025
 # infinity ----------------------
 References:
     1)  https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
