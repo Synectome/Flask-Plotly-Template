@@ -1,24 +1,25 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileField, RadioField, SelectMultipleField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileField, RadioField, SelectMultipleField, \
+    TextAreaField
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, Regexp, Length, Optional
 from app.models import User
 import re
 
 username_registration_validator = re.compile('[\w]+')
 
-def user_list():
-    '''querys the User table to generate options
-    as a list of (value, label) pairs, to be used in the choices argument of
-    radio and select fields in forms'''
-    # '<User {}>' ~> the user __repr__
-    username = User.query.all()
-    # takes each user__repr__, splits by the space, then splits by the >, returns only the username
-    username_list = [name.split()[1].split('>')[0] for name in username]
-    key_name_pairs = []
-    for i in range(len(username_list)):
-        pair = (i, username_list[i])
-        key_name_pairs.append(pair)
-    return key_name_pairs
+# def user_list():
+#     '''querys the User table to generate options
+#     as a list of (value, label) pairs, to be used in the choices argument of
+#     radio and select fields in forms'''
+#     # '<User {}>' ~> the user __repr__
+#     username = User.query.all()
+#     # takes each user__repr__, splits by the space, then splits by the >, returns only the username
+#     username_list = [name.split()[1].split('>')[0] for name in username]
+#     key_name_pairs = []
+#     for i in range(len(username_list)):
+#         pair = (i, username_list[i])
+#         key_name_pairs.append(pair)
+#     return key_name_pairs
 
 
 class LoginForm(FlaskForm):
@@ -59,6 +60,7 @@ class UploadForm(FlaskForm):
 class NewProjectForm(FlaskForm):
     project_title = StringField(label="Project Title", validators=[DataRequired(),
                                                                    Regexp(username_registration_validator)])
-    members = SelectMultipleField(label="members", validators=[DataRequired()], choices=user_list())
+    description = TextAreaField(label="Enter a Project Description", validators=[DataRequired()])
+    #members = SelectMultipleField(label="members", validators=[DataRequired()], choices=user_list())
     next = SubmitField(label="Next")
 

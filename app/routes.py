@@ -1,15 +1,14 @@
-import os
 import time
 from app import app, db, datafiles
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from app.forms import LoginForm, RegistrationForm, UploadForm, NewProjectForm
-from app.models import User
-from app.privatefunctions import user_directory_init, move_upload_to_secure_directory as move_upload
+from app.models import User, Project
+from app.privatefunctions import user_directory_init, project_directory_init, \
+    move_upload_to_secure_directory as move_upload
 from flask_uploads import configure_uploads
 from werkzeug.utils import secure_filename
 from werkzeug.urls import url_parse
-from threading import Thread
 
 
 @app.route('/')
@@ -100,7 +99,6 @@ def upload():
             return redirect(url_for('index')), flash('upload successful')
         else:
             return redirect(url_for('upload')), flash('insecure filename, please rename file before uploading.')
-    #flash('shit is not validated on submit!')
     print(form.errors)
     return render_template('upload.html', form=form)
 
@@ -108,27 +106,26 @@ def upload():
 ##################################################################
 # --------------------PROJECT CREATION-------------------------- #
 ##################################################################
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/new_project', methods=['GET', 'POST'])
 @login_required
 def new_project():
     form = NewProjectForm()
     if form.validate_on_submit():
-        user = User(username=form.username.data, email=form.email.data)
-        user_directory_init(form.username.data)
-        user.set_password(form.password.data)
-        db.session.add(user)
-        db.session.commit()
+        project = Project(title=form.project_title.data, description=form.description.data)
+        #Check that the project name doesn't already exist
+
+        #user_directory_init(form.username.data)
+        #user.set_password(form.password.data)
+        #db.session.add(user)
+        #db.session.commit()
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
-    return render_template('register.html', title='Register', form=form)
-
+    return render_template('new_project.html', title='New Project', form=form)
 
 
 ##################################################################
 # -------------------PLOTTING and DATA-------------------------- #
 ##################################################################
-
-
 @app.route('/vis')
 def vis():
     return render_template('vis.html', title='graph vis')
