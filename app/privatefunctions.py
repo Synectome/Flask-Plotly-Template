@@ -22,6 +22,21 @@ def user_directory_init(username):
     return cwd
 
 
+def project_directory_init(project_name):
+    '''Only called once when user creates the project.
+    creates a folder in the app/projectfiles directory'''
+
+    cwd = os.path.join(os.getcwd(), 'app')
+    cwd = os.path.join(cwd, 'projectfiles')
+    if not os.path.exists(cwd):
+        os.mkdir(cwd)
+    cwd = os.path.join(cwd, project_name)
+    if not os.path.exists(cwd):
+        os.mkdir(cwd)
+        return cwd
+    return 'Project Directory Already Exists. This project has been made already.'
+
+
 def move_upload_to_secure_directory(username, filename, user_or_proj, project=None):
     '''Moves uploaded file from temp_uploads directory to either
     the users personal folder, or to a project directory.'''

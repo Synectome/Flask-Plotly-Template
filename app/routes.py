@@ -3,7 +3,7 @@ import time
 from app import app, db, datafiles
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
-from app.forms import LoginForm, RegistrationForm, UploadForm
+from app.forms import LoginForm, RegistrationForm, UploadForm, NewProjectForm
 from app.models import User
 from app.privatefunctions import user_directory_init, move_upload_to_secure_directory as move_upload
 from flask_uploads import configure_uploads
@@ -103,6 +103,26 @@ def upload():
     #flash('shit is not validated on submit!')
     print(form.errors)
     return render_template('upload.html', form=form)
+
+
+##################################################################
+# --------------------PROJECT CREATION-------------------------- #
+##################################################################
+@app.route('/register', methods=['GET', 'POST'])
+@login_required
+def new_project():
+    form = NewProjectForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data)
+        user_directory_init(form.username.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('Congratulations, you are now a registered user!')
+        return redirect(url_for('login'))
+    return render_template('register.html', title='Register', form=form)
+
+
 
 ##################################################################
 # -------------------PLOTTING and DATA-------------------------- #

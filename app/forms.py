@@ -56,7 +56,7 @@ class UploadForm(FlaskForm):
     submit = SubmitField('Upload File')
 
 
-class NewProject(FlaskForm):
+class NewProjectForm(FlaskForm):
     project_title = StringField(label="Project Title", validators=[DataRequired(),
                                                                    Regexp(username_registration_validator)])
     members = SelectMultipleField(label="members", validators=[DataRequired()], choices=user_list())
