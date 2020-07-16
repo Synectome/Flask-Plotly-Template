@@ -1,10 +1,24 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileField, RadioField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileField, RadioField, SelectMultipleField
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, Regexp, Length, Optional
 from app.models import User
-from re import compile
+import re
 
-username_registration_validator = compile('[\w]+')
+username_registration_validator = re.compile('[\w]+')
+
+def user_list():
+    '''querys the User table to generate options
+    as a list of (value, label) pairs, to be used in the choices argument of
+    radio and select fields in forms'''
+    # '<User {}>' ~> the user __repr__
+    username = User.query.all()
+    # takes each user__repr__, splits by the space, then splits by the >, returns only the username
+    username_list = [name.split()[1].split('>')[0] for name in username]
+    key_name_pairs = []
+    for i in range(len(username_list)):
+        pair = (i, username_list[i])
+        key_name_pairs.append(pair)
+    return key_name_pairs
 
 
 class LoginForm(FlaskForm):
@@ -15,11 +29,11 @@ class LoginForm(FlaskForm):
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(), Length(min=5, max=15)])
+    username = StringField('Username', validators=[DataRequired(), Length(min=5, max=15),
+                                                   Regexp(username_registration_validator)])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
-    password2 = PasswordField(
-        'Repeat Password', validators=[DataRequired(), EqualTo('password')])
+    password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')
 
     def validate_username(self, username):
@@ -40,3 +54,11 @@ class UploadForm(FlaskForm):
                                           ('1', 'Specific Project')])
     project_name = StringField('Project Name', validators=[Optional()])
     submit = SubmitField('Upload File')
+
+
+class NewProject(FlaskForm):
+    project_title = StringField(label="Project Title", validators=[DataRequired(),
+                                                                   Regexp(username_registration_validator)])
+    members = SelectMultipleField(label="members", validators=[DataRequired()], choices=user_list())
+    next = SubmitField(label="Next")
+
