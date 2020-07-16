@@ -31,7 +31,7 @@ if not app.debug: # only run when debugging is disabled
         mail_handler = SMTPHandler(
             mailhost=(app.config['MAIL_SERVER'], app.config['MAIL_PORT']),
             fromaddr='no-reply@' + app.config['MAIL_SERVER'],
-            toaddrs=app.config['ADMINS'], subject='Microblog Failure',
+            toaddrs=app.config['ADMINS'], subject='Flask-Template-Site Failure',
             credentials=auth, secure=secure)
         mail_handler.setLevel(logging.ERROR)
         app.logger.addHandler(mail_handler)
@@ -46,7 +46,14 @@ if not app.debug: # only run when debugging is disabled
     app.logger.addHandler(file_handler)
 
     app.logger.setLevel(logging.INFO)
-    app.logger.info('Microblog startup')
+    app.logger.info('Flask-Template-Site startup')
 
 # This import causes errors if it is at the top of the file
 from app import routes, models, errors, privatefunctions
+
+# This prevents database upgrade error for sqlite in dev mode when droping a column during upgrade
+with app.app_context():
+    if db.engine.url.drivername == 'sqlite':
+        migrate.init_app(app, db, render_as_batch=True)
+    else:
+        migrate.init_app(app, db)

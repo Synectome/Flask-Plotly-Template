@@ -34,7 +34,6 @@ class GenericProjectTable(db.Model):
     integer_data = db.Column(db.Integer)
     boolean_data = db.Column(db.Boolean)
     float_data = db.Column(db.Float)
-    pickled_data = db.Column(db.PickleType) # serialize an entire python object (hesitant to use to store json data)
 
     def __repr__(self):
         return '''GenericProjectRecord:
@@ -44,10 +43,37 @@ class GenericProjectTable(db.Model):
         observation: {}
         int data: {}
         bool data: {}
-        float data: {}
-        --pickle not shown here'''.format(self.id, self.user_id, self.timestamp, self.observation,
-                                          self.integer_data, self.boolean_data,
-                                          self.float_data)
+        float data: {}'''.format(self.id, self.user_id, self.timestamp, self.observation,
+                                          self.integer_data, self.boolean_data, self.float_data)
+
+
+project_members = db.Table('members',
+                           db.Column('user_id', db.Integer, db.ForeignKey('user.id')), # user must be lower case
+                           db.Column('project_id', db.Integer, db.ForeignKey('projects.id'))) # projects must be lower2
+
+
+class Projects(db.Model):
+    '''SQL TABLE: list of projects
+        id = int
+        title = string(100)
+        description = string(300)
+        project_files_path = string(300)
+        members = many-many relationship through 'project_members' '''
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100))
+    description = db.Column(db.String(300))
+    project_files_path = db.Column(db.String(300))
+    members = db.relationship('User', secondary=project_members,
+                              primaryjoin=(project_members.c.user_id == id),
+                              secondaryjoin=(project_members.c.project_id == id),
+                              backref=db.backref('project_members', lazy='dynamic'), lazy='dynamic')
+
+    def __repr__(self):
+        return '''project id : {}
+        title : {}
+        description : {}
+        file path : {}
+        members : {}'''.format(self.id, self.title, self.description, self.project_files_path, self.members)
 
 
 class UserPlots(db.Model):
