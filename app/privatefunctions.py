@@ -13,7 +13,10 @@ def user_directory_init(username):
     creates a folder in the /userfiles for their plotly plots
     and data queries to be made'''
 
-    cwd = os.path.join(os.getcwd(), 'userfiles')
+    cwd = os.path.join(os.getcwd(), 'app')
+    cwd = os.path.join(cwd, 'userfiles')
+    if not os.path.exists(cwd):
+        os.mkdir(cwd)
     cwd = os.path.join(cwd, username)
     os.mkdir(cwd)
     return cwd

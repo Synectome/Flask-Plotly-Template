@@ -15,11 +15,7 @@ class LoginForm(FlaskForm):
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(), Length(min=5, max=15),
-                                                   Regexp(username_registration_validator,
-                                                          message="""Username must be an alphanumeric 
-                                                                          sequence, or 'underscore' '_' with no special 
-                                                                          characters.""")])
+    username = StringField('Username', validators=[DataRequired(), Length(min=5, max=15)])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField(
