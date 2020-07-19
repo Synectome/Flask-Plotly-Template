@@ -101,6 +101,15 @@ json objects can be stored in the database as pickles.
 
     to use the SMTP 'fake' email server for debugging, just run this in another terminal:
         $ python -m smtpd -n -c DebuggingServer localhost:8025
+
+# infinity -1 -------------------
+Production server
+    1)ssh into the machine
+    2)remove root user login, and set up pub/priv keys for passwordless entry
+    3)setup ufw for ports 20,21,80,443, and --force enable
+    4)update and upgrade
+    5)install python3 python3-venv python3-dev
+    6)install mysql-server postfix nginx git
 # infinity ----------------------
 References:
     1)  https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world

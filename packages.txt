@@ -1,11 +1,11 @@
 July 12 2020
 
 Python 3.8
-flask           (web framework)
+Flask           (web framework)
 python-dotenv   (environmental vars)
-flask-wtf       (web form creation)
-flask-alchemy   (database ORM ~ SQL)
-flask-migrate   (updating database models)
+Flask-wtf       (web form creation)
+Flask-alchemy   (database ORM ~ SQL)
+Flask-migrate   (updating database models)
 werkzeug        (hashing passwords, should come with flask)
 flask-login     (handles user logins)
 email-validator (handles email validation)

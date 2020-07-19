@@ -4,8 +4,8 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from app.forms import LoginForm, RegistrationForm, UploadForm, NewProjectForm
 from app.models import User, Project
-from app.privatefunctions import user_directory_init, project_directory_init, \
-    move_upload_to_secure_directory as move_upload
+from app.privatefunctions import user_directory_init, user_list,\
+    project_directory_init, move_upload_to_secure_directory as move_upload
 from flask_uploads import configure_uploads
 from werkzeug.utils import secure_filename
 from werkzeug.urls import url_parse
@@ -55,6 +55,7 @@ def register():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
+        db.session.expire_all()
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
@@ -85,10 +86,7 @@ def upload():
     form = UploadForm()
     if form.validate_on_submit():
         filedata = form.file.data
-        print('here comes the project_name')
-        print(form.project_name.data)
-        print('here comes the radio selection')
-        print(form.project_or_user.data)
+
         if form.project_or_user == '1' and form.project_name == '':
             return redirect(url_for('upload')), flash('Project destination selected, but no project name given.')
         if secure_filename(filedata.filename):
@@ -109,17 +107,27 @@ def upload():
 @app.route('/new_project', methods=['GET', 'POST'])
 @login_required
 def new_project():
+    db.session.expire_all()
+    form = NewProjectForm()
+    if form.validate_on_submit():
+        project = Project(title=form.project_title.data, description=form.description.data, members=form.members.data)
+        project_directory_init(form.username.data)
+        #db.session.add(user)
+        #db.session.commit()
+        flash('Project initiated successfully!')
+        return redirect(url_for('login'))
+    return render_template('new_project.html', title='New Project', form=form)
+
+
+@app.route('/project_permissions', methods=['GET', 'POST'])
+@login_required
+def project_permissions():
     form = NewProjectForm()
     if form.validate_on_submit():
         project = Project(title=form.project_title.data, description=form.description.data)
-        #Check that the project name doesn't already exist
 
-        #user_directory_init(form.username.data)
-        #user.set_password(form.password.data)
-        #db.session.add(user)
-        #db.session.commit()
-        flash('Congratulations, you are now a registered user!')
-        return redirect(url_for('login'))
+        flash('Project initiated successfully!')
+        return redirect(url_for('project_permissions'))
     return render_template('new_project.html', title='New Project', form=form)
 
 

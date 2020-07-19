@@ -1,4 +1,23 @@
-2020-07-16 16:06:25,619 ERROR: Exception on /register [GET] [in /home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py:1891]
+2020-07-16 13:36:31,444 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+2020-07-16 13:37:44,076 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+2020-07-16 13:38:29,831 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+2020-07-16 13:38:41,695 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+2020-07-16 13:38:48,199 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+2020-07-16 15:50:50,949 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+2020-07-16 15:51:19,489 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+2020-07-16 15:54:24,279 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+2020-07-16 15:55:52,782 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+2020-07-16 15:56:44,264 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+2020-07-16 15:56:56,359 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+2020-07-16 15:57:17,708 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+2020-07-16 15:57:44,751 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+2020-07-16 15:58:12,627 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+2020-07-16 16:00:06,202 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+2020-07-16 16:00:53,584 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+2020-07-16 16:01:14,533 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+2020-07-16 16:01:19,750 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+2020-07-16 16:04:42,318 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+2020-07-16 16:04:47,033 ERROR: Exception on /index [GET] [in /home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
     self.dialect.do_execute(
@@ -21,8 +40,8 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/jesse/PycharmProjects/Flask_template_site/app/routes.py", line 50, in register
-    if current_user.is_authenticated:
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_login/utils.py", line 270, in decorated_view
+    elif not current_user.is_authenticated:
   File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/werkzeug/local.py", line 347, in __getattr__
     return getattr(self._get_current_object(), name)
   File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/werkzeug/local.py", line 306, in _get_current_object
@@ -71,9 +90,9 @@ FROM user
 WHERE user.id = ?]
 [parameters: (1,)]
 (Background on this error at: http://sqlalche.me/e/13/e3q8)
-2020-07-16 16:08:29,073 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
-2020-07-16 16:09:15,064 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
-2020-07-16 16:09:46,797 ERROR: Exception on /register [GET] [in /home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py:1891]
+2020-07-16 16:05:37,466 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+2020-07-16 16:05:41,627 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+2020-07-16 16:05:46,038 ERROR: Exception on /index [GET] [in /home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
     self.dialect.do_execute(
@@ -96,8 +115,8 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/jesse/PycharmProjects/Flask_template_site/app/routes.py", line 50, in register
-    if current_user.is_authenticated:
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_login/utils.py", line 270, in decorated_view
+    elif not current_user.is_authenticated:
   File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/werkzeug/local.py", line 347, in __getattr__
     return getattr(self._get_current_object(), name)
   File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/werkzeug/local.py", line 306, in _get_current_object
@@ -146,81 +165,3 @@ FROM user
 WHERE user.id = ?]
 [parameters: (1,)]
 (Background on this error at: http://sqlalche.me/e/13/e3q8)
-2020-07-16 16:13:12,573 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
-2020-07-16 16:15:23,923 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
-2020-07-16 16:15:28,191 ERROR: Exception on /register [GET] [in /home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
-    self.dialect.do_execute(
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-sqlite3.OperationalError: no such table: user
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/jesse/PycharmProjects/Flask_template_site/app/routes.py", line 50, in register
-    if current_user.is_authenticated:
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/werkzeug/local.py", line 347, in __getattr__
-    return getattr(self._get_current_object(), name)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/werkzeug/local.py", line 306, in _get_current_object
-    return self.__local()
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_login/utils.py", line 26, in <lambda>
-    current_user = LocalProxy(lambda: _get_user())
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_login/utils.py", line 346, in _get_user
-    current_app.login_manager._load_user()
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_login/login_manager.py", line 318, in _load_user
-    user = self._user_callback(user_id)
-  File "/home/jesse/PycharmProjects/Flask_template_site/app/models.py", line 13, in load_user
-    return User.query.get(int(id))
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 1021, in get
-    return self._get_impl(ident, loading.load_on_pk_identity)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 1138, in _get_impl
-    return db_load_fn(self, primary_key_identity)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 287, in load_on_pk_identity
-    return q.one()
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3458, in one
-    ret = self.one_or_none()
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3427, in one_or_none
-    ret = list(self)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3503, in __iter__
-    return self._execute_and_instances(context)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3528, in _execute_and_instances
-    result = conn.execute(querycontext.statement, self._params)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1014, in execute
-    return meth(self, multiparams, params)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1127, in _execute_clauseelement
-    ret = self._execute_context(
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1317, in _execute_context
-    self._handle_dbapi_exception(
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1511, in _handle_dbapi_exception
-    util.raise_(
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 178, in raise_
-    raise exception
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
-    self.dialect.do_execute(
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user
-[SQL: SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash 
-FROM user 
-WHERE user.id = ?]
-[parameters: (1,)]
-(Background on this error at: http://sqlalche.me/e/13/e3q8)
-2020-07-16 16:16:27,175 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
-2020-07-16 16:16:48,041 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
-2020-07-16 16:18:23,283 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
