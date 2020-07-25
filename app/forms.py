@@ -1,10 +1,13 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileField, RadioField, SelectMultipleField, \
     TextAreaField
+from wtforms_sqlalchemy.fields import QuerySelectField #didn't seem to help
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, Regexp, Length, Optional
 from app.models import User, Project
+from app import app, db
 from app.privatefunctions import user_list
 import re
+
 
 username_registration_validator = re.compile('[\w]+')
 
@@ -44,11 +47,16 @@ class UploadForm(FlaskForm):
     submit = SubmitField('Upload File')
 
 
+def user_query():
+    return User.query
+
+
 class NewProjectForm(FlaskForm):
     project_title = StringField(label="Project Title", validators=[DataRequired(),
                                                                    Regexp(username_registration_validator)])
     description = TextAreaField(label="Enter a Project Description", validators=[DataRequired()])
-    members = SelectMultipleField(label="Select Members", choices=user_list())
+    members_picks = SelectMultipleField(label="Select Members", choices=[], coerce=int)
+    # members_picks = QuerySelectField(query_factory=user_query(), allow_blank=True)
     next = SubmitField(label="Next")
 
     def validate_project_title(self, project_title):

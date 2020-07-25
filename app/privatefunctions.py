@@ -5,8 +5,8 @@ what those spaces are intended for
 import os
 import time
 import shutil
-from app import app
-
+from app import app, db
+from app.models import User
 
 
 def user_directory_init(username):
@@ -19,8 +19,17 @@ def user_directory_init(username):
     if not os.path.exists(cwd):
         os.mkdir(cwd)
     cwd = os.path.join(cwd, username)
-    os.mkdir(cwd)
+    if not os.path.exists(cwd):
+        os.mkdir(cwd)
     return cwd
+
+
+def project_directory_string(project_name):
+    '''generates the project directory path as a string'''
+    cwd = os.path.join(os.getcwd(), 'app')
+    cwd = os.path.join(cwd, 'projectfiles')
+    cwd = os.path.join(cwd, project_name)
+    return str(cwd)
 
 
 def project_directory_init(project_name):
@@ -78,7 +87,6 @@ def move_upload_to_secure_directory(username, filename, user_or_proj, project=No
 
 
 def user_list():
-    from app.models import User
     '''querys the User table to generate options
     as a list of (value, label) pairs, to be used in the choices argument of
     radio and select fields in forms'''
@@ -86,11 +94,15 @@ def user_list():
     username = User.query.all()
     username_list = []
     # takes each user__repr__, splits by the space, then splits by the >, returns only the username
-    for name in username:
-        name = str(name)
-        username_list.append(name.split()[1].split('>')[0])
-    key_name_pairs = []
-    for i in range(len(username_list)):
-        pair = (username_list[i], username_list[i])
-        key_name_pairs.append(pair)
-    return key_name_pairs
+    for user in username:
+
+        name = str(user)
+        username_list.append((user.id, name.split()[1].split('>')[0]))
+    return username_list
+
+
+    # key_name_pairs = []
+    # for i in range(len(username_list)):
+    #     pair = (username_list[i], username_list[i])
+    #     key_name_pairs.append(pair)
+    # return key_name_pairs

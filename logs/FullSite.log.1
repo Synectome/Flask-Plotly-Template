@@ -1,169 +1,4 @@
-2020-07-16 16:18:26,759 ERROR: Exception on /register [GET] [in /home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
-    self.dialect.do_execute(
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-sqlite3.OperationalError: no such table: user
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/jesse/PycharmProjects/Flask_template_site/app/routes.py", line 48, in register
-    if current_user.is_authenticated:
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/werkzeug/local.py", line 347, in __getattr__
-    return getattr(self._get_current_object(), name)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/werkzeug/local.py", line 306, in _get_current_object
-    return self.__local()
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_login/utils.py", line 26, in <lambda>
-    current_user = LocalProxy(lambda: _get_user())
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_login/utils.py", line 346, in _get_user
-    current_app.login_manager._load_user()
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_login/login_manager.py", line 318, in _load_user
-    user = self._user_callback(user_id)
-  File "/home/jesse/PycharmProjects/Flask_template_site/app/models.py", line 13, in load_user
-    return User.query.get(int(id))
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 1021, in get
-    return self._get_impl(ident, loading.load_on_pk_identity)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 1138, in _get_impl
-    return db_load_fn(self, primary_key_identity)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 287, in load_on_pk_identity
-    return q.one()
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3458, in one
-    ret = self.one_or_none()
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3427, in one_or_none
-    ret = list(self)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3503, in __iter__
-    return self._execute_and_instances(context)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3528, in _execute_and_instances
-    result = conn.execute(querycontext.statement, self._params)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1014, in execute
-    return meth(self, multiparams, params)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1127, in _execute_clauseelement
-    ret = self._execute_context(
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1317, in _execute_context
-    self._handle_dbapi_exception(
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1511, in _handle_dbapi_exception
-    util.raise_(
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 178, in raise_
-    raise exception
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
-    self.dialect.do_execute(
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user
-[SQL: SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash 
-FROM user 
-WHERE user.id = ?]
-[parameters: (1,)]
-(Background on this error at: http://sqlalche.me/e/13/e3q8)
-2020-07-16 16:20:17,537 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
-2020-07-16 16:20:22,725 ERROR: Exception on /register [GET] [in /home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
-    self.dialect.do_execute(
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-sqlite3.OperationalError: no such table: user
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/jesse/PycharmProjects/Flask_template_site/app/routes.py", line 48, in register
-    if current_user.is_authenticated:
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/werkzeug/local.py", line 347, in __getattr__
-    return getattr(self._get_current_object(), name)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/werkzeug/local.py", line 306, in _get_current_object
-    return self.__local()
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_login/utils.py", line 26, in <lambda>
-    current_user = LocalProxy(lambda: _get_user())
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_login/utils.py", line 346, in _get_user
-    current_app.login_manager._load_user()
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_login/login_manager.py", line 318, in _load_user
-    user = self._user_callback(user_id)
-  File "/home/jesse/PycharmProjects/Flask_template_site/app/models.py", line 13, in load_user
-    return User.query.get(int(id))
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 1021, in get
-    return self._get_impl(ident, loading.load_on_pk_identity)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 1138, in _get_impl
-    return db_load_fn(self, primary_key_identity)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 287, in load_on_pk_identity
-    return q.one()
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3458, in one
-    ret = self.one_or_none()
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3427, in one_or_none
-    ret = list(self)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3503, in __iter__
-    return self._execute_and_instances(context)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3528, in _execute_and_instances
-    result = conn.execute(querycontext.statement, self._params)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1014, in execute
-    return meth(self, multiparams, params)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1127, in _execute_clauseelement
-    ret = self._execute_context(
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1317, in _execute_context
-    self._handle_dbapi_exception(
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1511, in _handle_dbapi_exception
-    util.raise_(
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 178, in raise_
-    raise exception
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
-    self.dialect.do_execute(
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user
-[SQL: SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash 
-FROM user 
-WHERE user.id = ?]
-[parameters: (1,)]
-(Background on this error at: http://sqlalche.me/e/13/e3q8)
-2020-07-16 16:20:58,149 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
-2020-07-16 16:21:11,891 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
-2020-07-16 16:21:17,155 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
-2020-07-16 16:21:22,791 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
-2020-07-16 16:34:57,221 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
-2020-07-16 16:37:21,745 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
-2020-07-16 16:46:43,750 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
-2020-07-16 16:47:43,975 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
-2020-07-16 16:49:15,094 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
-2020-07-16 16:50:08,246 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
-2020-07-16 16:52:17,714 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
-2020-07-16 16:52:35,023 ERROR: Exception on /new_project [POST] [in /home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/base.py", line 406, in _entity_descriptor
-    return getattr(entity, key)
-AttributeError: type object 'Project' has no attribute 'project_title'
-
-The above exception was the direct cause of the following exception:
-
+2020-07-25 13:19:51,850 ERROR: Exception on /new_project [GET] [in /home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -179,31 +14,59 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/home/jesse/PycharmProjects/Flask_template_site/app/routes.py", line 113, in new_project
-    if form.validate_on_submit():
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_wtf/form.py", line 100, in validate_on_submit
-    return self.is_submitted() and self.validate()
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms/form.py", line 318, in validate
-    return super(Form, self).validate(extra)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms/form.py", line 150, in validate
-    if not field.validate(self, extra):
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms/fields/core.py", line 226, in validate
-    stop_validation = self._run_validation_chain(form, chain)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms/fields/core.py", line 246, in _run_validation_chain
-    validator(form, self)
-  File "/home/jesse/PycharmProjects/Flask_template_site/app/forms.py", line 72, in validate_project_title
-    title = Project.query.filter_by(project_title=project_title.data).first()
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 1902, in filter_by
-    clauses = [
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 1903, in <listcomp>
-    _entity_descriptor(zero, key) == value
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/orm/base.py", line 408, in _entity_descriptor
-    util.raise_(
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 178, in raise_
-    raise exception
-sqlalchemy.exc.InvalidRequestError: Entity '<class 'app.models.Project'>' has no property 'project_title'
-2020-07-16 16:54:04,556 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
-2020-07-16 16:54:24,613 ERROR: Exception on /new_project [POST] [in /home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py:1891]
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/routes.py", line 120, in new_project
+    return render_template('new_project.html', title='New Project', form=form)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/new_project.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block "body"
+    {% block content -%}
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/base.html", line 49, in block "content"
+    {% block app_content %}{% endblock %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/new_project.html", line 12, in block "app_content"
+    {{ wtf.quick_form(form) }}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/runtime.py", line 679, in _invoke
+    rv = self._func(*arguments)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/wtf.html", line 205, in template
+    {{ form_field(field,
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/runtime.py", line 679, in _invoke
+    rv = self._func(*arguments)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/wtf.html", line 123, in template
+    {{field(class="form-control", **kwargs)|safe}}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms/fields/core.py", line 160, in __call__
+    return self.meta.render_field(self, kwargs)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms/meta.py", line 56, in render_field
+    return field.widget(field, **render_kw)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms/widgets/core.py", line 300, in __call__
+    for val, label, selected in field.iter_choices():
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms_sqlalchemy/fields.py", line 107, in iter_choices
+    for pk, obj in self._get_object_list():
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms_sqlalchemy/fields.py", line 100, in _get_object_list
+    self._object_list = list((text_type(get_pk(obj)), obj) for obj in query)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms_sqlalchemy/fields.py", line 100, in <genexpr>
+    self._object_list = list((text_type(get_pk(obj)), obj) for obj in query)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms_sqlalchemy/fields.py", line 189, in get_pk_from_identity
+    cls, key = identity_key(instance=obj)
+ValueError: too many values to unpack (expected 2)
+2020-07-25 13:20:11,404 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:60]
+2020-07-25 13:20:13,508 ERROR: Exception on /new_project [GET] [in /home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -219,19 +82,115 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/home/jesse/PycharmProjects/Flask_template_site/app/routes.py", line 113, in new_project
-    if form.validate_on_submit():
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_wtf/form.py", line 100, in validate_on_submit
-    return self.is_submitted() and self.validate()
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms/form.py", line 318, in validate
-    return super(Form, self).validate(extra)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms/form.py", line 150, in validate
-    if not field.validate(self, extra):
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms/fields/core.py", line 226, in validate
-    stop_validation = self._run_validation_chain(form, chain)
-  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms/fields/core.py", line 246, in _run_validation_chain
-    validator(form, self)
-  File "/home/jesse/PycharmProjects/Flask_template_site/app/forms.py", line 72, in validate_project_title
-    title = Project.query.filter_by(project_title=title.data).first()
-UnboundLocalError: local variable 'title' referenced before assignment
-2020-07-16 16:54:55,811 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:49]
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/routes.py", line 120, in new_project
+    return render_template('new_project.html', title='New Project', form=form)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/new_project.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block "body"
+    {% block content -%}
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/base.html", line 49, in block "content"
+    {% block app_content %}{% endblock %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/new_project.html", line 12, in block "app_content"
+    {{ wtf.quick_form(form) }}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/runtime.py", line 679, in _invoke
+    rv = self._func(*arguments)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/wtf.html", line 205, in template
+    {{ form_field(field,
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/runtime.py", line 679, in _invoke
+    rv = self._func(*arguments)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/wtf.html", line 123, in template
+    {{field(class="form-control", **kwargs)|safe}}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms/fields/core.py", line 160, in __call__
+    return self.meta.render_field(self, kwargs)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms/meta.py", line 56, in render_field
+    return field.widget(field, **render_kw)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms/widgets/core.py", line 300, in __call__
+    for val, label, selected in field.iter_choices():
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms_sqlalchemy/fields.py", line 107, in iter_choices
+    for pk, obj in self._get_object_list():
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms_sqlalchemy/fields.py", line 100, in _get_object_list
+    self._object_list = list((text_type(get_pk(obj)), obj) for obj in query)
+TypeError: 'method' object is not iterable
+2020-07-25 13:22:37,308 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:60]
+2020-07-25 13:22:42,360 ERROR: Exception on /new_project [GET] [in /home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/routes.py", line 120, in new_project
+    return render_template('new_project.html', title='New Project', form=form)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/new_project.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block "body"
+    {% block content -%}
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/base.html", line 49, in block "content"
+    {% block app_content %}{% endblock %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/new_project.html", line 12, in block "app_content"
+    {{ wtf.quick_form(form) }}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/runtime.py", line 679, in _invoke
+    rv = self._func(*arguments)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/wtf.html", line 205, in template
+    {{ form_field(field,
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/runtime.py", line 679, in _invoke
+    rv = self._func(*arguments)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/wtf.html", line 123, in template
+    {{field(class="form-control", **kwargs)|safe}}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms/fields/core.py", line 160, in __call__
+    return self.meta.render_field(self, kwargs)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms/meta.py", line 56, in render_field
+    return field.widget(field, **render_kw)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms/widgets/core.py", line 300, in __call__
+    for val, label, selected in field.iter_choices():
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms_sqlalchemy/fields.py", line 107, in iter_choices
+    for pk, obj in self._get_object_list():
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/wtforms_sqlalchemy/fields.py", line 98, in _get_object_list
+    query = self.query or self.query_factory()
+TypeError: 'BaseQuery' object is not callable
+2020-07-25 13:25:41,728 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:60]

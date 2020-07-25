@@ -9,6 +9,17 @@ from flask_bootstrap import Bootstrap
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 
+
+class SQLiteAlchemy(SQLAlchemy):
+    '''allows me to change the isolation level.
+    source:  https://github.com/pallets/flask-sqlalchemy/issues/120'''
+    def apply_driver_hacks(self, app, info, options):
+        options.update({
+            'isolation_level': 'READ COMMITTED',
+        })
+        super(SQLiteAlchemy, self).apply_driver_hacks(app, info, options)
+
+
 app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)

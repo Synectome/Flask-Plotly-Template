@@ -4,8 +4,8 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from app.forms import LoginForm, RegistrationForm, UploadForm, NewProjectForm
 from app.models import User, Project
-from app.privatefunctions import user_directory_init, user_list,\
-    project_directory_init, move_upload_to_secure_directory as move_upload
+from app.privatefunctions import user_directory_init,project_directory_init, \
+    move_upload_to_secure_directory as move_upload, project_directory_string, user_list
 from flask_uploads import configure_uploads
 from werkzeug.utils import secure_filename
 from werkzeug.urls import url_parse
@@ -86,7 +86,6 @@ def upload():
     form = UploadForm()
     if form.validate_on_submit():
         filedata = form.file.data
-
         if form.project_or_user == '1' and form.project_name == '':
             return redirect(url_for('upload')), flash('Project destination selected, but no project name given.')
         if secure_filename(filedata.filename):
@@ -104,16 +103,28 @@ def upload():
 ##################################################################
 # --------------------PROJECT CREATION-------------------------- #
 ##################################################################
+def user_getter(ids):
+    users = []
+    for ident in ids:
+        users.append(User.query.filter_by(id=ident).first())
+    if current_user.id not in ids:
+        users.append(current_user)
+    return users
+
+
 @app.route('/new_project', methods=['GET', 'POST'])
 @login_required
 def new_project():
-    db.session.expire_all()
     form = NewProjectForm()
+    form.members_picks.choices = [(person.id, person.username) for person in User.query.all()]
     if form.validate_on_submit():
-        project = Project(title=form.project_title.data, description=form.description.data, members=form.members.data)
-        project_directory_init(form.username.data)
-        #db.session.add(user)
-        #db.session.commit()
+        path = project_directory_string(form.project_title.data)
+        project = Project(title=form.project_title.data, description=form.description.data,
+                          project_files_path=path, creator=current_user, members=user_getter(form.members_picks.data))
+        project_directory_init(form.project_title.data)
+        db.session.add(project)
+        db.session.commit()
+        print()
         flash('Project initiated successfully!')
         return redirect(url_for('login'))
     return render_template('new_project.html', title='New Project', form=form)
@@ -124,8 +135,13 @@ def new_project():
 def project_permissions():
     form = NewProjectForm()
     if form.validate_on_submit():
-        project = Project(title=form.project_title.data, description=form.description.data)
 
+        project = Project(title=form.project_title.data, description=form.description.data)
+        db.session.add(project)
+        db.session.commit()
+        for i in form.member_picks.data:
+            project.members.append(User.query.filter(User.id == i))
+        db.session.commit()
         flash('Project initiated successfully!')
         return redirect(url_for('project_permissions'))
     return render_template('new_project.html', title='New Project', form=form)

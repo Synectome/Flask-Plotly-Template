@@ -4,8 +4,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 project_members = db.Table('members',
-                           db.Column('user_id', db.Integer, db.ForeignKey('user.id')), # user must be lower case
-                           db.Column('project_id', db.Integer, db.ForeignKey('project.id'))) # projects must be lower2
+                           db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+                           db.Column('project_id', db.Integer, db.ForeignKey('project.id'), primary_key=True))
 
 
 @login.user_loader # not a part of any classes
@@ -14,15 +14,12 @@ def load_user(id):
 
 
 class User(UserMixin, db.Model):
-    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
+    projects_created = db.relationship('Project', backref='creator')
+    plots = db.relationship('UserPlots', backref='creator')
     password_hash = db.Column(db.String(128))
-    # generic_project = db.relationship('GenericProjectTable', backref='author', lazy='dynamic')
-    member_of = db.relationship('User', secondary=project_members,
-                                secondaryjoin=(project_members.c.user_id == id),
-                                backref=db.backref('members_projects', lazy='dynamic'), lazy='dynamic')
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -35,27 +32,22 @@ class User(UserMixin, db.Model):
 
 
 class Project(db.Model):
-    '''SQL TABLE: list of projects
-        id = int
-        title = string(100)
-        description = string(300)
-        project_files_path = string(300)
-        members = many-many relationship through 'project_members' '''
-    __tablename__ = 'project'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), index=True, unique=True)
     description = db.Column(db.String(300))
     project_files_path = db.Column(db.String(300))
+    creator_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     members = db.relationship('User', secondary=project_members,
-                              primaryjoin=(project_members.c.project_id == id),
-                              backref=db.backref('project_members', lazy='dynamic'), lazy='dynamic')
+                              backref=db.backref('User', lazy='dynamic'))
 
     def __repr__(self):
         return '''project id : {}
         title : {}
         description : {}
+        creator : {}
         file path : {}
-        members : {}'''.format(self.id, self.title, self.description, self.project_files_path, self.members)
+        members : {}'''.format(self.id, self.title, self.description, self.creator, self.project_files_path,
+                               self.members)
 
 
 class UserPlots(db.Model):
