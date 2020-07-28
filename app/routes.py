@@ -130,8 +130,7 @@ def new_project():
 
 
 def most_recent_project(creator_id):
-    # return Project.query.filter_by(creator_id=current_user.id).order_by(Project.timestamp).first()
-    return Project.query.order_by(Project.timestamp.desc()).first()
+    return Project.query.filter(Project.creator_id==current_user.id).order_by(Project.timestamp.desc()).first()
 
 
 def id2name(id):
