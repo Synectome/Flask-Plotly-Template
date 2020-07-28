@@ -2,8 +2,8 @@ import time
 from app import app, db, datafiles
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
-from app.forms import LoginForm, RegistrationForm, UploadForm, NewProjectForm
-from app.models import User, Project
+from app.forms import LoginForm, RegistrationForm, UploadForm, NewProjectForm, ProjectPermissionsForm
+from app.models import User, Project, project_members
 from app.privatefunctions import user_directory_init,project_directory_init, \
     move_upload_to_secure_directory as move_upload, project_directory_string, user_list
 from flask_uploads import configure_uploads
@@ -124,27 +124,61 @@ def new_project():
         project_directory_init(form.project_title.data)
         db.session.add(project)
         db.session.commit()
-        print()
         flash('Project initiated successfully!')
-        return redirect(url_for('login'))
+        return redirect(url_for('project_permissions'))
     return render_template('new_project.html', title='New Project', form=form)
+
+
+def most_recent_project(creator_id):
+    # return Project.query.filter_by(creator_id=current_user.id).order_by(Project.timestamp).first()
+    return Project.query.order_by(Project.timestamp.desc()).first()
+
+
+def id2name(id):
+    return User.query.filter_by(id=id).first().username
+
+
+def permission_writer(form, project_id, tablequery):
+    current_project_entries = tablequery
+    for member_id in form.admin.data:
+        member = current_project_entries.query.filter_by(user_id=member_id)
+        member.permission = 2
+        db.session.commit()
+    for member_id in form.readwrite.data:
+        member = current_project_entries.query.filter_by(user_id=member_id)
+        member.permission = 1
+        db.session.commit()
+    for member_id in form.readonly.data:
+        member = current_project_entries.query.filter_by(user_id=member_id)
+        member.permission = 0
+        db.session.commit()
+
+
+def damn_query(project_id):
+    y = db.session.query.join(project_members,
+                              (project_members.c.project_id == project_id)).filter(
+                                  project_members.c.user_id == user_id)
+    x = db.session.query(project_members).filter(project_members.c.project_id == project_id).all()
 
 
 @app.route('/project_permissions', methods=['GET', 'POST'])
 @login_required
 def project_permissions():
-    form = NewProjectForm()
+    project = most_recent_project(current_user.id)
+    # db.session.query(project_members).filter(project_members.c.project_id== project_id_var).all()
+    table_query = db.session.query(project_members).filter(project_members.c.project_id==project.id).all()
+    #choices = [(person.user_id, id2name(person.user_id)) for person in table_query]
+    userss = project.members #
+    choices = [(person.id, person.username) for person in userss]
+    form = ProjectPermissionsForm()
+    form.admin.choices = choices
+    form.readwrite.choices = choices
+    form.readonly.choices = choices
     if form.validate_on_submit():
-
-        project = Project(title=form.project_title.data, description=form.description.data)
-        db.session.add(project)
-        db.session.commit()
-        for i in form.member_picks.data:
-            project.members.append(User.query.filter(User.id == i))
-        db.session.commit()
-        flash('Project initiated successfully!')
-        return redirect(url_for('project_permissions'))
-    return render_template('new_project.html', title='New Project', form=form)
+        permission_writer(form, project.id, table_query)
+        flash('Permissions successfully set!')
+        return redirect(url_for('index'))
+    return render_template('new_project.html', title=str(project.title) + " permissions", form=form)
 
 
 ##################################################################

@@ -5,7 +5,8 @@ from flask_login import UserMixin
 
 project_members = db.Table('members',
                            db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
-                           db.Column('project_id', db.Integer, db.ForeignKey('project.id'), primary_key=True))
+                           db.Column('project_id', db.Integer, db.ForeignKey('project.id'), primary_key=True),
+                           db.Column('permission', db.Integer)) # 0 = r, 1 = rw, 2 = rw & delete.
 
 
 @login.user_loader # not a part of any classes
@@ -35,6 +36,7 @@ class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), index=True, unique=True)
     description = db.Column(db.String(300))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     project_files_path = db.Column(db.String(300))
     creator_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     members = db.relationship('User', secondary=project_members,
@@ -43,11 +45,12 @@ class Project(db.Model):
     def __repr__(self):
         return '''project id : {}
         title : {}
+        date : {}
         description : {}
         creator : {}
         file path : {}
-        members : {}'''.format(self.id, self.title, self.description, self.creator, self.project_files_path,
-                               self.members)
+        members : {}'''.format(self.id, self.title, self.timestamp, self.description, self.creator,
+                               self.project_files_path, self.members)
 
 
 class UserPlots(db.Model):
