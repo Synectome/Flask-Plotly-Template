@@ -4,6 +4,7 @@ app_dir = os.path.join(basedir, 'app')
 
 
 class Config(object):
+    FLASK_DEBUG = 1
     # security
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
 

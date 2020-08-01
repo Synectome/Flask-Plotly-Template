@@ -106,3 +106,10 @@ def user_list():
     #     pair = (username_list[i], username_list[i])
     #     key_name_pairs.append(pair)
     # return key_name_pairs
+
+def generate_users():
+    for i in range(10):
+        name = 'user' + str(i)
+        email = name + '@user.com'
+        password = 'pipilongtalking'
+
