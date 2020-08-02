@@ -67,3 +67,7 @@ class ProjectPermissionsForm(FlaskForm):
     readwrite = SelectMultipleField(label="Read and Write Members", choices=[], coerce=int)
     admin = SelectMultipleField(label="Project Admins", choices=[], coerce=int)
     submit = SubmitField(label="Submit")
+
+
+class APIAccessForm(FlaskForm):
+    secret_ans = StringField(label="some secret")

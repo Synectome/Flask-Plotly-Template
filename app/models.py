@@ -3,7 +3,7 @@ from app import db, login
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 # many to many with a model based association table for relationship data
-#   https://stackoverflow.com/questions/30406808/flask-sqlalchemy-difference-between-association-model-and-association-table-fo
+# https://stackoverflow.com/questions/30406808/flask-sqlalchemy-difference-between-association-model-and-association-table-fo
 
 # project_members = db.Table('members',
 #                            db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
@@ -14,7 +14,7 @@ from flask_login import UserMixin
 class ProjectMembers(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) #, primary_key=True) # having another primary key messed it
-    project_id = db.Column(db.Integer, db.ForeignKey('project.id')) #, primary_key=True)
+    project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
     permission = db.Column(db.Integer, nullable=True)
     user = db.relationship('User', backref=db.backref('Project'))
     project = db.relationship('Project', backref=db.backref('User'))
@@ -36,6 +36,7 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
+    # admin_lvl = db.Column(db.Boolean(create_constraint=False)) if I need people with su po
     projects_created = db.relationship('Project', backref='creator')
     plots = db.relationship('UserPlots', backref='creator')
     member_of = db.relationship('Project', secondary=lambda: ProjectMembers.__table__)#, backref=db.backref('User', lazy='dynamic'))
@@ -43,6 +44,10 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
+
+    @property
+    def password(self):
+        raise AttributeError('password is not a readable attribute')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
