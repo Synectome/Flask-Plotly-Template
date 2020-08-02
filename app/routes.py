@@ -1,5 +1,5 @@
 import time
-from app import app, db, datafiles
+from app import app, db, datafiles, manager
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from app.forms import LoginForm, RegistrationForm, UploadForm, NewProjectForm, ProjectPermissionsForm
@@ -177,6 +177,20 @@ def project_permissions():
         return redirect(url_for('index'))
     return render_template('new_project.html', title=str(project.title) + " permissions", form=form)
 
+
+##################################################################
+# ----------------------Database API---------------------------- #
+##################################################################
+# manager.create_api(User, methods=['GET']) # this displays password hashes!!
+# manager.create_api(Project, methods=['GET'])
+
+@app.route('/rest')
+@login_required
+def rest():
+    # username = current_user.username
+    manager.create_api(User) # this displays password hashes!!
+    #manager.create_api(Project)
+    return render_template('rest.html', title="Secure API Access")
 
 ##################################################################
 # -------------------PLOTTING and DATA-------------------------- #

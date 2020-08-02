@@ -6,6 +6,7 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_uploads import DATA, UploadSet
 from flask_bootstrap import Bootstrap
+from flask_restless import APIManager
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 
@@ -28,6 +29,7 @@ login = LoginManager(app)
 login.login_view = 'login'
 datafiles = UploadSet('datafiles', DATA)
 bootstrap = Bootstrap(app)
+manager = APIManager(app, flask_sqlalchemy_db=db)
 
 # miguel grinberg error logging
 if not app.debug: # only run when debugging is disabled

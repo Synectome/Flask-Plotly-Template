@@ -1,0 +1,218 @@
+2020-08-02 13:10:01,684 ERROR: Exception on /index [GET] [in /home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/routes.py", line 20, in index
+    return render_template('index.html', title='Home')
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 21, in block "body"
+    {% block navbar %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/base.html", line 30, in block "navbar"
+    <li><a href="{{ url_for('rest') }}">RESTING</a></li>
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'rest'. Did you mean 'register' instead?
+2020-08-02 13:10:46,588 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:62]
+2020-08-02 13:10:48,640 ERROR: Exception on /index [GET] [in /home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/routes.py", line 20, in index
+    return render_template('index.html', title='Home')
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 21, in block "body"
+    {% block navbar %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/base.html", line 30, in block "navbar"
+    <li><a href="{{ url_for('rest') }}">RESTING</a></li>
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'rest'. Did you mean 'register' instead?
+2020-08-02 13:12:11,527 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:62]
+2020-08-02 13:17:47,664 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:62]
+2020-08-02 13:18:36,581 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:62]
+2020-08-02 13:19:39,956 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:62]
+2020-08-02 13:19:43,166 ERROR: Exception on /upload [GET] [in /home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/routes.py", line 100, in upload
+    return render_template('upload.html', form=form)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/upload.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 21, in block "body"
+    {% block navbar %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/base.html", line 30, in block "navbar"
+    <li><a href="{{ url_for('rest') }}">rest</a></li>
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'rest'. Did you mean 'register' instead?
+2020-08-02 13:24:41,714 INFO: Flask-Template-Site startup [in /home/jesse/PycharmProjects/Flask_template_site/app/__init__.py:62]
+2020-08-02 13:24:48,003 ERROR: Exception on / [GET] [in /home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/routes.py", line 20, in index
+    return render_template('index.html', title='Home')
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 21, in block "body"
+    {% block navbar %}
+  File "/home/jesse/PycharmProjects/Flask_template_site/app/templates/base.html", line 30, in block "navbar"
+    <li><a href="{{ url_for('rest') }}">rest</a></li>
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/flask/helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "/home/jesse/PycharmProjects/Flask_template_site/venv/lib/python3.8/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'rest'. Did you mean 'register' instead?
