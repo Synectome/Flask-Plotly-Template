@@ -1,11 +1,11 @@
 import time
-from app import app, db, datafiles, manager
+from app import app, db, datafiles
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from flask_restless import ProcessingException
 from app.forms import LoginForm, RegistrationForm, UploadForm, NewProjectForm, ProjectPermissionsForm
 from app.models import User, Project, ProjectMembers
-from app.privatefunctions import user_directory_init,project_directory_init, \
+from app.privatefunctions import user_directory_init, project_directory_init, \
     move_upload_to_secure_directory as move_upload, project_directory_string, user_list
 from flask_uploads import configure_uploads
 from werkzeug.utils import secure_filename
@@ -191,26 +191,6 @@ def auth_func(**kw):
 @app.route('/rest')
 @login_required
 def rest():
-    api_denied_fields = ['email', 'password_hash']
-
-    # --User API--
-    manager.create_api(User, url_prefix='/rest/get/', methods=['GET'],
-                       preprocessors=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func]),
-                       exclude_columns=api_denied_fields)
-    manager.create_api(User, url_prefix='/rest/add/', methods=['POST'],
-                       preprocessors=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func]),
-                       exclude_columns=api_denied_fields)
-    manager.create_api(User, url_prefix='/rest/update/', methods=['PATCH'],
-                       preprocessors=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func]),
-                       exclude_columns=api_denied_fields)
-    # manager.create_api(User, url_prefix='/rest/delete/users/', methods=['DELETE'],
-    #                   preprocessors = dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func]),
-    #                   exclude_columns=api_denied_fields) # To Dangerous to have enabled  as is
-
-    # --Project API--
-    manager.create_api(Project, url_prefix='/rest/get/', methods=['GET'],
-                       preprocessors=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func]),
-                       exclude_columns=api_denied_fields)
 
     return render_template('rest.html', title="Secure API Access")
 

@@ -70,3 +70,25 @@ with app.app_context():
         migrate.init_app(app, db, render_as_batch=True)
     else:
         migrate.init_app(app, db)
+
+# ----------------------------------------------- #
+# ------------API-MANAGER-CREATION--------------- #
+# ----------------------------------------------- #
+api_denied_fields = ['email', 'password_hash']
+# --User API--
+manager.create_api(models.User, url_prefix='/rest/get/', methods=['GET'],
+                   preprocessors=dict(GET_SINGLE=[routes.auth_func], GET_MANY=[routes.auth_func]),
+                   exclude_columns=api_denied_fields)
+manager.create_api(models.User, url_prefix='/rest/add/', methods=['POST'],
+                   preprocessors=dict(GET_SINGLE=[routes.auth_func], GET_MANY=[routes.auth_func]),
+                   exclude_columns=api_denied_fields)
+manager.create_api(models.User, url_prefix='/rest/update/', methods=['PATCH'],
+                   preprocessors=dict(GET_SINGLE=[routes.auth_func], GET_MANY=[routes.auth_func]),
+                   exclude_columns=api_denied_fields)
+# manager.create_api(User, url_prefix='/rest/delete/users/', methods=['DELETE'],
+#                   preprocessors = dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func]),
+#                   exclude_columns=api_denied_fields) # To Dangerous to have enabled  as is
+# --Project API--
+manager.create_api(models.Project, url_prefix='/rest/get/', methods=['GET'],
+                   preprocessors=dict(GET_SINGLE=[routes.auth_func], GET_MANY=[routes.auth_func]),
+                   exclude_columns=api_denied_fields)

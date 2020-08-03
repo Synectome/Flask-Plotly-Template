@@ -1,8 +1,29 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-    <h1>Hi, !</h1>
+    <h1>Hi, {{ current_user.username }}!</h1>
     <h3>This is the Api Access Page.</h3>
+    <h5>Some Important Instructions for Using This API</h5>
+
+    <div>
+        <p>The way to make a request is in the url as follows:</p>
+        <p>websitename.com/rest/request_type/tablename</p>
+
+        <p class="tab">Where 'request_type' is one of the following:</p>
+        <p class="tab2">get -to pull information</p>
+        <p class="tab2">add -to add a row to a table</p>
+        <p class="tab2">update -to modify a field or row</p>
+        <p class="tab2">delete -DISABLED by default</p>
+
+        <p class="tab">Ask site administrator to enable the delete if needed; however, it is
+        recommended that any field deleting be done manually through the website form
+        as it allows for more secure removal.</p>
+    </div>
     <!-- for projects in the user-project many-many table that the logged in
     user is a member of, display relevant project data and tools here-->
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{ url_for('.static',filename='styles/rest.css') }}" type="text/css">
 {% endblock %}
