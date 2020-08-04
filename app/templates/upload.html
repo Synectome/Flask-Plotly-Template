@@ -7,5 +7,80 @@
          <div class="col-md-4">
             {{ wtf.quick_form(form) }}
          </div>
-    </div>
+      </div>
+   <div>
+      <h3>Instructions for loading plotly plots from R to dashboard.</h3>
+      <p>The following code example creates an html file with your plotly plot.</p>
+      <p>If the plot is only to be hosted on the dash board, use the selfcontained option = FALSE,
+      otherwise, if you intend to share the plot as an interactive element with others, set the
+      selfcontained option = TRUE, and all the dependencies and libraries will be bundled to make sure
+      your plot operates correctly.</p>
+      <p>Ensure that you've installed the plotly and htmlwidgets library.</p>
+      <pre><code>
+         # import the two libraries needed
+         library(plotly)
+         library(htmlwidgets)
+
+         # set the working directory to save plots to
+         setwd("/home/jesse/R/TestingIframe/")
+
+         # generate your plot, (this is just an example)
+         p <- plot_ly(midwest, x = ~percollege, color = ~state, type = "box")
+
+         # selfcontained = F, means dependencies are not bundled, and will only work on the dashboard.
+         saveWidget(p, "YOUR_FILE_NAME.html", selfcontained = F, libdir = "lib")
+
+         # selfcontained = T, means they are bundled, and you can display this interactive version
+         # of your plot on any modern browser just by opening the file generated
+         saveWidget(p, file = "YOUR_FILE_NAME.html", selfcontained = T, libdir = "lib")
+
+      </code></pre>
+   </div>
+   <div>
+      <h3>Instructions for loading plotly plots from Python to dashboard.</h3>
+      <p>The following code example creates an html file with your plotly plot.</p>
+      <p>Depending on where the plot will be used; either locally, on another pc, or on the dashboard,
+      the include_plotlyjs argument should be set as in one of the three examples below.</p>
+      <p>Ensure that you've installed the plotly module.</p>
+      <pre><code class="python">
+         # import the modules needed
+         import os
+         import plotly.express as px
+         import plotly.io as pio
+
+         # get the current working directory.
+         # unlike R, this will be the directory that this python file is running from,
+         # so setting a long form directory path isn't necessary. you can just save your file here.
+         cwd = os.getcwd()
+
+         # If you do want to save to a subdirectory
+         folder_name = "YOUR_FOLDER_NAME_HERE"
+         cwd = os.path.join(cwd, folder_name)
+
+         # enter in the desired file name (ensure you have .html in there)
+         file_name = "YOUR_FILE_NAME.html"
+         file_path = os.path.join(cwd, file_name
+
+         # generate your plot, (this is just an example)
+         # https://plotly.github.io/plotly.py-docs/generated/plotly.io.write_html.html
+         # include_plotlyjs means the html is self contained to run anywhere (even offline)
+         pio.write_html(fig, file=file_path, include_plotlyjs=True)
+
+         # for version that works anywhere with an internet connection
+         # set include_plotlyjs='CDN'
+         pio.write_html(fig, file=file_path, include_plotlyjs='CDN')
+
+         # for Dashboard only versions, set include_plotlyjs='directory'
+         pio.write_html(fig, file=file_path,  include_plotlyjs='directory')
+      </code></pre>
+   </div>
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+{ # <link rel="stylesheet" href="{{ url_for('.static',filename='styles/rest.css') }}" type="text/css"> }
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 {% endblock %}

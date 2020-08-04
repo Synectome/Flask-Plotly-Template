@@ -1,12 +1,11 @@
 from app import app, db
 import os
-from app.models import User, GenericProjectTable as GPT
+from app.models import User
 from random import randint
 from datetime import datetime
 import plotly.express as px
 import plotly.io as pio
 import pandas as pd
-
 
 
 def fill_projects(num):

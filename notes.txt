@@ -102,9 +102,13 @@ json objects can be stored in the database as pickles.
     to use the SMTP 'fake' email server for debugging, just run this in another terminal:
         $ python -m smtpd -n -c DebuggingServer localhost:8025
 # restless api ------------------
-    AUTHENTICATING API USERS:
+    GENERAL CONFIG:
 
+    AUTHENTICATING API USERS:
     https://github.com/jfinkels/flask-restless/blob/master/examples/server_configurations/authentication/__main__.py
+# -------------------------------
+# code highlighting
+    https://highlightjs.org/download/
 # infinity -1 -------------------
 Production server
     1)ssh into the machine
